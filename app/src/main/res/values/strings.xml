@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cache Cleaner</string>
+    <string name="accessibility_description">Cache Cleaner uses this optional accessibility service only to open app Storage settings and press Clear cache. It does not read passwords or personal text and stops after the selected apps are processed.</string>
 </resources>
