@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Installed apps"
+                    android:text="Cache Cleaner cache"
                     android:textColor="#DDEAFF"
                     android:textSize="14sp" />
 
@@ -84,26 +84,17 @@
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_primary"
-            android:text="CLEAR ALL APP CACHES"
+            android:text="CLEAR THIS APP'S CACHE"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />
-
-        <CheckBox
-            android:id="@+id/includeSystemCheck"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Include system apps"
-            android:textColor="#59677A"
-            android:textSize="13sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:lineSpacingExtra="3dp"
-            android:text="The app uses Android Accessibility only after you enable it. It opens each app's Storage screen and taps Clear cache. It can be stopped at any time."
+            android:text="This app can clear only its own cache. Android protects every other app's private files. Use the settings buttons below to open another app and choose Clear cache manually."
             android:textColor="#59677A"
             android:textSize="13sp" />
 

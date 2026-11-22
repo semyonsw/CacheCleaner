@@ -4,12 +4,10 @@ A clean Android cache-cleaning utility built for modern Samsung devices.
 
 ## Features
 
-- Lists installed user apps and optionally system apps
-- Uses an explicitly enabled Accessibility service to open app Storage pages
-- Attempts to tap only controls explicitly labeled for cache clearing
-- Never taps Clear data, Delete data, or destructive confirmation controls
-- Runs through apps sequentially with progress, skip counts, and stop control
-- Opens Samsung/Android app-management settings
+- Clears only Cache Cleaner's own cache
+- Never accesses, modifies, or clears another app's private data
+- Never requests Accessibility access
+- Opens Samsung/Android app-management and storage settings
 - Material-style, mobile-first interface
 - Android 8.0+ support
 
@@ -17,10 +15,9 @@ A clean Android cache-cleaning utility built for modern Samsung devices.
 
 Android protects the private storage of every app. A regular app without system
 or root privileges cannot automatically delete the cache of all other apps.
-This app therefore uses Android Accessibility only after the user explicitly
-enables it in Settings. The service navigates visible settings screens and taps
-Clear cache. Samsung, Android One UI, language, and accessibility UI variations
-can prevent it from recognizing a particular app's controls.
+This safe version explicitly does not use Accessibility or attempt to automate
+other apps. Use the included settings shortcuts and the app's Storage screen to
+clear each app's cache manually.
 
 ## Build
 
