@@ -133,12 +133,6 @@ public class CacheAccessibilityService extends AccessibilityService {
         }
 
         try {
-            if (actionSent && tryConfirmButton(root)) {
-                root.recycle();
-                scheduleNext(900);
-                return;
-            }
-
             if (tryClearCacheButton(root)) {
                 actionSent = true;
                 processed++;
@@ -160,31 +154,6 @@ public class CacheAccessibilityService extends AccessibilityService {
         } catch (Exception ignored) {
             root.recycle();
         }
-    }
-
-    private boolean tryConfirmButton(AccessibilityNodeInfo root) {
-        AccessibilityNodeInfo node = findNode(root, new String[]{
-                "ok", "confirm", "clear", "delete", "yes",
-                "tamam", "sil", "onayla", "удалить", "очистить",
-                "подтвердить", "삭제", "확인", "确定", "删除"
-        });
-        if (node == null) {
-            return false;
-        }
-        String text = normalized(node.getText());
-        String description = normalized(node.getContentDescription());
-        String value = text.isEmpty() ? description : text;
-        if (value.contains("clear cache") || value.contains("clear cached")
-                || value.contains("cache") && value.contains("delete")) {
-            node.recycle();
-            return false;
-        }
-        boolean clicked = node.isClickable()
-                ? node.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                : clickClosestAncestor(node);
-        node.recycle();
-        actionSent = false;
-        return clicked;
     }
 
     private boolean tryStorageButton(AccessibilityNodeInfo root) {
@@ -215,6 +184,22 @@ public class CacheAccessibilityService extends AccessibilityService {
                 "缓存数据", "kcache löschen", "cache leeren"
         });
         if (node == null) {
+            return false;
+        }
+        String label = normalized(node.getText());
+        String description = normalized(node.getContentDescription());
+        String combined = (label + " " + description).trim();
+        if (combined.contains("clear data")
+                || combined.contains("delete data")
+                || combined.contains("erase data")
+                || combined.contains("data will be permanently")
+                || combined.contains("remove app data")
+                || combined.contains("all data")
+                || combined.contains("gegevens wissen")
+                || combined.contains("앱 데이터 삭제")
+                || combined.contains("删除数据")
+                || combined.contains("データを削除")) {
+            node.recycle();
             return false;
         }
         if (node.isClickable()) {
